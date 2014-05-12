@@ -15,38 +15,21 @@
 <body>
 
     <div class="fh_appform_container">
-        <div id="fh_wufoo_header" class="hidden bar-title fh_appform_button_bar" style="height: 35px;"></div>
-        <div id="fh_wufoo_alerts_area"><div class="fh_wufoo_alert_offline hidden error">Working Offline.</div></div>
+        <div id="fh_appform_header" class="hidden bar-title fh_appform_button_bar" style="height: 35px;"></div>
+        <div id="fh_appform_alerts_area"><div class="fh_appform_alert_offline hidden error">Working Offline.</div></div>
 
-        <div id="fh_wufoo_form_list" class="fh_appform_form hidden"></div>
+        <div id="fh_appform_form_list" class="fh_appform_form hidden"></div>
 
-        <div id="fh_wufoo_drafts" class="fh_appform_form hidden"></div>
+        <div id="fh_appform_drafts" class="fh_appform_form hidden"></div>
 
-        <div id="fh_wufoo_pending" class="fh_appform_form hidden"></div>
+        <div id="fh_appform_pending" class="fh_appform_form hidden"></div>
 
-        <div id="fh_wufoo_sent" class="fh_appform_form hidden"></div>
+        <div id="fh_appform_sent" class="fh_appform_form hidden"></div>
 
-        <div id="fh_wufoo_settings" class="fh_appform_form hidden"></div>
-
-
-        <div id="fh_wufoo_content" class="hidden"></div>
+        <div id="fh_appform_settings" class="fh_appform_form hidden"></div>
 
 
-        <br>
-        <div id="debug_mode" class="hidden">
-            <button onclick="App.collections.forms.create(App.MockForm);">Create Mock Form</button><br>
-            <button onclick="App.collections.forms.create(App.MockSimplerMultiPageForm);">Create Simpler Mock Multi Page Form</button><br>
-            <button onclick="App.collections.forms.create(App.MockSimpleSinglePageForm);">Create Mock Single Page Form</button><br>
-            <button onclick="App.collections.drafts.create(App.MockForm);">Create Mock Draft</button><br>
-            <button onclick="App.collections.pending_submitting.create(App.MockForm);">Create Mock Pending Submitting</button><br>
-            <button onclick="App.collections.sent.create(App.MockForm);">Create Mock Sent</button><br>
-            <button onclick="App.collections.pending_review.create(App.MockForm);">Create Mock Pending Review</button><br>
-
-            <button onclick="App.collections.pending_waiting.create(App.MockForm);">Create Mock Pending Waiting</button><br>
-            <button onclick="localStorage.clear();location.reload();">Clear Local Storage</button><br>
-        </div>
-
-        <div class="fh_appform_field_instructions" id="app_version"></div>
+        <div id="fh_appform_content" class="hidden"></div>
 
         <script src="feedhenry.js" type="text/javascript"></script>
         <script>
@@ -61,9 +44,9 @@
         <script>
                 jQuery(document).ready(function(){
                     try {
-                        var headerHeight = jQuery('#fh_wufoo_header').outerHeight();
+                        var headerHeight = jQuery('#fh_appform_header').outerHeight();
                         jQuery('body').addClass('fh_appform_body');
-                        jQuery('#fh_wufoo_alerts_area').css('clear', 'both');
+                        jQuery('#fh_appform_alerts_area').css('clear', 'both');
                     } catch(e) {
                         console.error("load failed");
                         console.error(e);
