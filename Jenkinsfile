@@ -36,10 +36,6 @@ node(platform) {
         checkout scm
     }
 
-    stage("Install local Cordova") {
-        sh "npm install cordova@6.3.1"
-    }
-
     stage("Prepare") {
         sh 'npm install --production'
         sh "cordova platform rm $platform"
