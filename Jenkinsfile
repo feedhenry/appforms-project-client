@@ -50,13 +50,12 @@ node(platform) {
 
     stage("Build") {
         if (platform == 'android') {
-            withEnv(['CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL=https://services.gradle.org/distributions/gradle-2.13-bin.zip']) {
-                if (BUILD_CONFIG == 'debug') {
-                   sh 'node_modules/cordova/bin/cordova build $platform --debug'
-                } else {
-                   sh 'node_modules/cordova/bin/cordova build $platform --release'
-                }
+            if (BUILD_CONFIG == 'debug') {
+               sh 'node_modules/cordova/bin/cordova build $platform --debug'
+            } else {
+               sh 'node_modules/cordova/bin/cordova build $platform --release'
             }
+
         } else {
             xcodeBuild(
                 cleanBeforeBuild: CLEAN,
