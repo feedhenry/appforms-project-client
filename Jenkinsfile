@@ -42,18 +42,18 @@ node(platform) {
 
     stage("Prepare") {
         sh 'npm install --production'
-        sh "node_modules/cordova/bin/cordova platform rm $platform"
-        sh "node_modules/cordova/bin/cordova platform add $platform"
-        sh "node_modules/cordova/bin/cordova prepare $platform"
+        sh "cordova platform rm $platform"
+        sh "cordova platform add $platform"
+        sh "cordova prepare $platform"
         sh 'rm -rf node_modules'
     }
 
     stage("Build") {
         if (platform == 'android') {
             if (BUILD_CONFIG == 'debug') {
-               sh 'node_modules/cordova/bin/cordova build $platform --debug'
+               sh 'cordova build $platform --debug'
             } else {
-               sh 'node_modules/cordova/bin/cordova build $platform --release'
+               sh 'cordova build $platform --release'
             }
 
         } else {
