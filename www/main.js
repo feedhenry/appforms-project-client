@@ -47,7 +47,7 @@ FormModel = Backbone.Model.extend({
 
         function sanitizeField(field) {
             if (field.props) {
-                if (["radio", "dropdown", "checkboxes"].indexOf(field.props.type) >= 0) {
+                if (["radio", "dropdown", "checkboxes", "readOnly"].indexOf(field.props.type) >= 0) {
                     // Multiple choice fields need special treatment
                     sanitizeMultipleChoice(field);
                 }
@@ -60,6 +60,19 @@ FormModel = Backbone.Model.extend({
                 sanitizeField(form.fields[field]);
             }
         }
+
+        var pages = form.pages || [];
+        // loop over and sanitize pages in the form
+        for (var i = 0; i < pages.length; i++) {
+            var page = pages[i];
+            page.props.name = _.escape(page.props.name);
+            page.props.description = _.escape(page.props.description);
+        }
+    
+        // sanitize root level form values
+        form.props.title = _.escape(form.props.title);
+        form.props.name = _.escape(form.props.name);
+        form.props.description = _.escape(form.props.description);
     },
     loadForm: function() {
         var formId = this.get("formId");
@@ -545,7 +558,7 @@ ShowFormButtonView = Backbone.View.extend({
         var html;
 
         //If the name of the form has not been set yet, it is loading.
-        var name = this.model.get("name") || "Loading...";
+        var name = this.model.escape("name") || "Loading...";
 
         var fullyLoaded = this.model.get('fh_full_data_loaded');
         var errorLoading = this.model.get('fh_error_loading');
@@ -673,7 +686,7 @@ SubmissionListview = Backbone.View.extend({
 
     if(collection.models.length > 0){
       _.each(groupedSubmissions, function(models, formId){
-          var formName = models[0].get('formName');
+          var formName = models[0].escape('formName');
           var status = collection.status;
           if(status instanceof(Array)){
             status = status[0];
@@ -1147,7 +1160,7 @@ ItemView = Backbone.View.extend({
         buttons = this.getButtons() === false ? false: buttons;
 
         var item = _.template($(template).html())( {
-            name: this.model.get('formName'),
+            name: this.model.escape('formName'),
             id: this.getIdText(),
             timestamp: this.getItemTime(),
             error_type: (error && error.type) ? error.type : null,
