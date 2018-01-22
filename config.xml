@@ -36,4 +36,7 @@
     <plugin name="cordova-plugin-console" spec="1.0.3" />
     <plugin name="fh-cordova-plugin-device" spec="https://github.com/feedhenry/fh-cordova-plugin-device.git#fh0.0.4" />
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
+    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
+        <string>Photo capture functionality needs access to photo library to save pictures.</string>
+    </edit-config>
 </widget>
