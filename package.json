@@ -1,6 +1,6 @@
 {
   "name": "feedhenry-appforms-template-app",
-  "version": "1.3.17",
+  "version": "1.3.18",
   "dependencies": {
     "fh-js-sdk": "~3.0.2"
   },
